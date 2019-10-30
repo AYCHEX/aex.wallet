@@ -14,8 +14,10 @@ settings:
 targets:
   TrustWalletCore:
     type: framework
-    platform: iOS
-    deploymentTarget: "11.0"
+    platform: [iOS, macOS]
+    deploymentTarget: 
+      iOS: "11.0"
+      macOS: "10.12"
     sources:
       - path: wallet-core/include
         headerVisibility: public
@@ -27,17 +29,5 @@ targets:
       - framework: libTrezorCrypto.a
       - framework: libTrustWalletCore.a
       - sdk: libc++.tbd
-    scheme:
-      testTargets:
-        - TrustWalletCoreTests
-      gatherCoverageData: true
     settings:
       CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION: YES_ERROR
-
-  TrustWalletCoreTests:
-    type: bundle.unit-test
-    platform: iOS
-    sources: [Tests]
-    dependencies:
-      - target: TrustWalletCore
-      - sdk: libc++.tbd

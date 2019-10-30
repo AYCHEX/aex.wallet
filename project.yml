@@ -20,6 +20,7 @@ targets:
       - path: wallet-core/include
         headerVisibility: public
       - wallet-core/swift/Sources
+      - TrustWalletCore
     dependencies:
       - carthage: SwiftProtobuf
       - framework: libprotobuf.a

@@ -1,0 +1,9 @@
+*~
+.DS_Store
+.vscode/
+
+Carthage/
+build/
+
+*.xcuserdatad/
+*.bak

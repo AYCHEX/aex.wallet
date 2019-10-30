@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ -z $1 ]; then
+    echo "Usage: ./update 0.12.25"
+    exit 0
+fi
+VERSION=$1
+BUILD_NAME="TrustWalletCore-iOS-$VERSION.zip"
+# BUILD_URL="https://s3.amazonaws.com/wallet-core/$BUILD_NAME"
+BUILD_URL="http://127.0.0.1:8000/$BUILD_NAME"
+UNZIP_DIR=wallet-core
+
+rm -rf $UNZIP_DIR $BUILD_NAME
+
+echo "Downloading $BUILD_URL"
+curl $BUILD_URL -o $BUILD_NAME
+unzip $BUILD_NAME -d $UNZIP_DIR
+
+echo "Building..."
+xcodegen && xcodebuild

@@ -1,0 +1,42 @@
+name: TrustWalletCore
+options:
+  bundleIdPrefix: com.trustwallet
+  createIntermediateGroups: true
+settings:
+  base:
+    LIBRARY_SEARCH_PATHS: wallet-core/build/ios
+    CLANG_CXX_LANGUAGE_STANDARD: c++17
+    SWIFT_VERSION: 5.0
+  configs:
+    release:
+      SWIFT_OPTIMIZATION_LEVEL: -Owholemodule
+      SWIFT_COMPILATION_MODE: wholemodule
+targets:
+  TrustWalletCore:
+    type: framework
+    platform: iOS
+    deploymentTarget: "11.0"
+    sources:
+      - path: wallet-core/include
+        headerVisibility: public
+      - wallet-core/swift/Sources
+    dependencies:
+      - carthage: SwiftProtobuf
+      - framework: libprotobuf.a
+      - framework: libTrezorCrypto.a
+      - framework: libTrustWalletCore.a
+      - sdk: libc++.tbd
+    scheme:
+      testTargets:
+        - TrustWalletCoreTests
+      gatherCoverageData: true
+    settings:
+      CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION: YES_ERROR
+
+  TrustWalletCoreTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [Tests]
+    dependencies:
+      - target: TrustWalletCore
+      - sdk: libc++.tbd

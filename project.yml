@@ -5,6 +5,7 @@ options:
 settings:
   base:
     LIBRARY_SEARCH_PATHS: wallet-core/build/ios
+    BUILD_LIBRARY_FOR_DISTRIBUTION: YES
     CLANG_CXX_LANGUAGE_STANDARD: c++17
     SWIFT_VERSION: 5.0
   configs:
@@ -30,4 +31,5 @@ targets:
       - framework: libTrustWalletCore.a
       - sdk: libc++.tbd
     settings:
+      SKIP_INSTALL: NO
       CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION: YES_ERROR

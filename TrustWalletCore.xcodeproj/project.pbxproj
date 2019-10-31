@@ -2289,7 +2289,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.trustwallet.TrustWalletCore-macOS";
 				PRODUCT_NAME = TrustWalletCore;
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -2316,7 +2316,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.trustwallet.TrustWalletCore-iOS";
 				PRODUCT_NAME = TrustWalletCore;
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2326,6 +2326,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
@@ -2385,6 +2386,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
@@ -2455,7 +2457,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.trustwallet.TrustWalletCore-iOS";
 				PRODUCT_NAME = TrustWalletCore;
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2484,7 +2486,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.trustwallet.TrustWalletCore-macOS";
 				PRODUCT_NAME = TrustWalletCore;
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

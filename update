@@ -6,8 +6,8 @@ if [ -z $1 ]; then
 fi
 VERSION=$1
 BUILD_NAME="TrustWalletCore-iOS-$VERSION.zip"
-# BUILD_URL="https://s3.amazonaws.com/wallet-core/$BUILD_NAME"
-BUILD_URL="http://127.0.0.1:8000/$BUILD_NAME"
+BUILD_URL="https://s3.amazonaws.com/wallet-core/$BUILD_NAME"
+# BUILD_URL="http://127.0.0.1:8000/$BUILD_NAME"
 UNZIP_DIR=wallet-core
 
 rm -rf $UNZIP_DIR $BUILD_NAME

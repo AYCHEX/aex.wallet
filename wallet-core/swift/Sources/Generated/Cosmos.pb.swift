@@ -107,6 +107,49 @@ public struct TW_Cosmos_Proto_StakeMessage {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+/// Message for restaking.
+public struct TW_Cosmos_Proto_ReStakeMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var delegatorAddress: String {
+    get {return _storage._delegatorAddress}
+    set {_uniqueStorage()._delegatorAddress = newValue}
+  }
+
+  public var validatorSrcAddress: String {
+    get {return _storage._validatorSrcAddress}
+    set {_uniqueStorage()._validatorSrcAddress = newValue}
+  }
+
+  public var validatorDstAddress: String {
+    get {return _storage._validatorDstAddress}
+    set {_uniqueStorage()._validatorDstAddress = newValue}
+  }
+
+  public var amount: TW_Cosmos_Proto_Amount {
+    get {return _storage._amount ?? TW_Cosmos_Proto_Amount()}
+    set {_uniqueStorage()._amount = newValue}
+  }
+  /// Returns true if `amount` has been explicitly set.
+  public var hasAmount: Bool {return _storage._amount != nil}
+  /// Clears the value of `amount`. Subsequent reads from it will return its default value.
+  public mutating func clearAmount() {_uniqueStorage()._amount = nil}
+
+  /// cosmos-sdk/MsgBeginRedelegate
+  public var typePrefix: String {
+    get {return _storage._typePrefix}
+    set {_uniqueStorage()._typePrefix = newValue}
+  }
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
 /// Message for staking.
 public struct TW_Cosmos_Proto_WithdrawStakeRewardMessage {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -198,6 +241,14 @@ public struct TW_Cosmos_Proto_Transaction {
     set {_uniqueStorage()._messageOneof = .unstakeMessage(newValue)}
   }
 
+  public var restakeMessage: TW_Cosmos_Proto_ReStakeMessage {
+    get {
+      if case .restakeMessage(let v)? = _storage._messageOneof {return v}
+      return TW_Cosmos_Proto_ReStakeMessage()
+    }
+    set {_uniqueStorage()._messageOneof = .restakeMessage(newValue)}
+  }
+
   public var withdrawStakeRewardMessage: TW_Cosmos_Proto_WithdrawStakeRewardMessage {
     get {
       if case .withdrawStakeRewardMessage(let v)? = _storage._messageOneof {return v}
@@ -212,6 +263,7 @@ public struct TW_Cosmos_Proto_Transaction {
     case sendCoinsMessage(TW_Cosmos_Proto_SendCoinsMessage)
     case stakeMessage(TW_Cosmos_Proto_StakeMessage)
     case unstakeMessage(TW_Cosmos_Proto_StakeMessage)
+    case restakeMessage(TW_Cosmos_Proto_ReStakeMessage)
     case withdrawStakeRewardMessage(TW_Cosmos_Proto_WithdrawStakeRewardMessage)
 
   #if !swift(>=4.1)
@@ -220,6 +272,7 @@ public struct TW_Cosmos_Proto_Transaction {
       case (.sendCoinsMessage(let l), .sendCoinsMessage(let r)): return l == r
       case (.stakeMessage(let l), .stakeMessage(let r)): return l == r
       case (.unstakeMessage(let l), .unstakeMessage(let r)): return l == r
+      case (.restakeMessage(let l), .restakeMessage(let r)): return l == r
       case (.withdrawStakeRewardMessage(let l), .withdrawStakeRewardMessage(let r)): return l == r
       default: return false
       }
@@ -301,6 +354,14 @@ public struct TW_Cosmos_Proto_SigningInput {
     set {_uniqueStorage()._messageOneof = .unstakeMessage(newValue)}
   }
 
+  public var restakeMessage: TW_Cosmos_Proto_ReStakeMessage {
+    get {
+      if case .restakeMessage(let v)? = _storage._messageOneof {return v}
+      return TW_Cosmos_Proto_ReStakeMessage()
+    }
+    set {_uniqueStorage()._messageOneof = .restakeMessage(newValue)}
+  }
+
   public var withdrawStakeRewardMessage: TW_Cosmos_Proto_WithdrawStakeRewardMessage {
     get {
       if case .withdrawStakeRewardMessage(let v)? = _storage._messageOneof {return v}
@@ -321,6 +382,7 @@ public struct TW_Cosmos_Proto_SigningInput {
     case sendCoinsMessage(TW_Cosmos_Proto_SendCoinsMessage)
     case stakeMessage(TW_Cosmos_Proto_StakeMessage)
     case unstakeMessage(TW_Cosmos_Proto_StakeMessage)
+    case restakeMessage(TW_Cosmos_Proto_ReStakeMessage)
     case withdrawStakeRewardMessage(TW_Cosmos_Proto_WithdrawStakeRewardMessage)
 
   #if !swift(>=4.1)
@@ -329,6 +391,7 @@ public struct TW_Cosmos_Proto_SigningInput {
       case (.sendCoinsMessage(let l), .sendCoinsMessage(let r)): return l == r
       case (.stakeMessage(let l), .stakeMessage(let r)): return l == r
       case (.unstakeMessage(let l), .unstakeMessage(let r)): return l == r
+      case (.restakeMessage(let l), .restakeMessage(let r)): return l == r
       case (.withdrawStakeRewardMessage(let l), .withdrawStakeRewardMessage(let r)): return l == r
       default: return false
       }
@@ -564,6 +627,99 @@ extension TW_Cosmos_Proto_StakeMessage: SwiftProtobuf.Message, SwiftProtobuf._Me
   }
 }
 
+extension TW_Cosmos_Proto_ReStakeMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ReStakeMessage"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "delegator_address"),
+    2: .standard(proto: "validator_src_address"),
+    3: .standard(proto: "validator_dst_address"),
+    4: .same(proto: "amount"),
+    5: .standard(proto: "type_prefix"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _delegatorAddress: String = String()
+    var _validatorSrcAddress: String = String()
+    var _validatorDstAddress: String = String()
+    var _amount: TW_Cosmos_Proto_Amount? = nil
+    var _typePrefix: String = String()
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _delegatorAddress = source._delegatorAddress
+      _validatorSrcAddress = source._validatorSrcAddress
+      _validatorDstAddress = source._validatorDstAddress
+      _amount = source._amount
+      _typePrefix = source._typePrefix
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._delegatorAddress)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._validatorSrcAddress)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._validatorDstAddress)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._amount)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._typePrefix)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._delegatorAddress.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._delegatorAddress, fieldNumber: 1)
+      }
+      if !_storage._validatorSrcAddress.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._validatorSrcAddress, fieldNumber: 2)
+      }
+      if !_storage._validatorDstAddress.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._validatorDstAddress, fieldNumber: 3)
+      }
+      if let v = _storage._amount {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if !_storage._typePrefix.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._typePrefix, fieldNumber: 5)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: TW_Cosmos_Proto_ReStakeMessage, rhs: TW_Cosmos_Proto_ReStakeMessage) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._delegatorAddress != rhs_storage._delegatorAddress {return false}
+        if _storage._validatorSrcAddress != rhs_storage._validatorSrcAddress {return false}
+        if _storage._validatorDstAddress != rhs_storage._validatorDstAddress {return false}
+        if _storage._amount != rhs_storage._amount {return false}
+        if _storage._typePrefix != rhs_storage._typePrefix {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension TW_Cosmos_Proto_WithdrawStakeRewardMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".WithdrawStakeRewardMessage"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -649,7 +805,8 @@ extension TW_Cosmos_Proto_Transaction: SwiftProtobuf.Message, SwiftProtobuf._Mes
     4: .standard(proto: "send_coins_message"),
     5: .standard(proto: "stake_message"),
     6: .standard(proto: "unstake_message"),
-    7: .standard(proto: "withdraw_stake_reward_message"),
+    7: .standard(proto: "restake_message"),
+    8: .standard(proto: "withdraw_stake_reward_message"),
   ]
 
   fileprivate class _StorageClass {
@@ -710,6 +867,14 @@ extension TW_Cosmos_Proto_Transaction: SwiftProtobuf.Message, SwiftProtobuf._Mes
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._messageOneof = .unstakeMessage(v)}
         case 7:
+          var v: TW_Cosmos_Proto_ReStakeMessage?
+          if let current = _storage._messageOneof {
+            try decoder.handleConflictingOneOf()
+            if case .restakeMessage(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._messageOneof = .restakeMessage(v)}
+        case 8:
           var v: TW_Cosmos_Proto_WithdrawStakeRewardMessage?
           if let current = _storage._messageOneof {
             try decoder.handleConflictingOneOf()
@@ -741,8 +906,10 @@ extension TW_Cosmos_Proto_Transaction: SwiftProtobuf.Message, SwiftProtobuf._Mes
         try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
       case .unstakeMessage(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-      case .withdrawStakeRewardMessage(let v)?:
+      case .restakeMessage(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      case .withdrawStakeRewardMessage(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
       case nil: break
       }
     }
@@ -779,8 +946,9 @@ extension TW_Cosmos_Proto_SigningInput: SwiftProtobuf.Message, SwiftProtobuf._Me
     7: .standard(proto: "send_coins_message"),
     8: .standard(proto: "stake_message"),
     9: .standard(proto: "unstake_message"),
-    10: .standard(proto: "withdraw_stake_reward_message"),
-    11: .standard(proto: "type_prefix"),
+    10: .standard(proto: "restake_message"),
+    11: .standard(proto: "withdraw_stake_reward_message"),
+    12: .standard(proto: "type_prefix"),
   ]
 
   fileprivate class _StorageClass {
@@ -852,6 +1020,14 @@ extension TW_Cosmos_Proto_SigningInput: SwiftProtobuf.Message, SwiftProtobuf._Me
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._messageOneof = .unstakeMessage(v)}
         case 10:
+          var v: TW_Cosmos_Proto_ReStakeMessage?
+          if let current = _storage._messageOneof {
+            try decoder.handleConflictingOneOf()
+            if case .restakeMessage(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._messageOneof = .restakeMessage(v)}
+        case 11:
           var v: TW_Cosmos_Proto_WithdrawStakeRewardMessage?
           if let current = _storage._messageOneof {
             try decoder.handleConflictingOneOf()
@@ -859,7 +1035,7 @@ extension TW_Cosmos_Proto_SigningInput: SwiftProtobuf.Message, SwiftProtobuf._Me
           }
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._messageOneof = .withdrawStakeRewardMessage(v)}
-        case 11: try decoder.decodeSingularStringField(value: &_storage._typePrefix)
+        case 12: try decoder.decodeSingularStringField(value: &_storage._typePrefix)
         default: break
         }
       }
@@ -893,12 +1069,14 @@ extension TW_Cosmos_Proto_SigningInput: SwiftProtobuf.Message, SwiftProtobuf._Me
         try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
       case .unstakeMessage(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
-      case .withdrawStakeRewardMessage(let v)?:
+      case .restakeMessage(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      case .withdrawStakeRewardMessage(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
       case nil: break
       }
       if !_storage._typePrefix.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._typePrefix, fieldNumber: 11)
+        try visitor.visitSingularStringField(value: _storage._typePrefix, fieldNumber: 12)
       }
     }
     try unknownFields.traverse(visitor: &visitor)

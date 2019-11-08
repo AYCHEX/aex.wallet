@@ -4,6 +4,8 @@
 
 Carthage/
 build/
+.build/
+.cquery_cache/
 
 *.xcuserdatad/
 *.bak

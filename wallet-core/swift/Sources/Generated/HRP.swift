@@ -16,12 +16,13 @@ public enum HRP: UInt32, CaseIterable, CustomStringConvertible  {
     case digiByte = 5
     case groestlcoin = 6
     case harmony = 7
-    case litecoin = 8
-    case monacoin = 9
-    case qtum = 10
-    case terra = 11
-    case viacoin = 12
-    case zilliqa = 13
+    case ioTeX = 8
+    case litecoin = 9
+    case monacoin = 10
+    case qtum = 11
+    case terra = 12
+    case viacoin = 13
+    case zilliqa = 14
 
     public var description: String {
         switch self {
@@ -33,6 +34,7 @@ public enum HRP: UInt32, CaseIterable, CustomStringConvertible  {
         case .digiByte: return "dgb"
         case .groestlcoin: return "grs"
         case .harmony: return "one"
+        case .ioTeX: return "io"
         case .litecoin: return "ltc"
         case .monacoin: return "mona"
         case .qtum: return "qc"

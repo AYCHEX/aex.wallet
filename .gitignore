@@ -6,6 +6,7 @@ Carthage/
 build/
 .build/
 .cquery_cache/
+*.zip
 
 *.xcuserdatad/
 *.bak

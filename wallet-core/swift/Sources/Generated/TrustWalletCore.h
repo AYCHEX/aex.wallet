@@ -22,8 +22,6 @@ FOUNDATION_EXPORT const unsigned char TrustWalletCoreVersionString[];
 #include <TrustWalletCore/TWBitcoinOpCodes.h>
 
 #include <TrustWalletCore/TWAES.h>
-#include <TrustWalletCore/TWARKAddress.h>
-#include <TrustWalletCore/TWARKSigner.h>
 #include <TrustWalletCore/TWAccount.h>
 #include <TrustWalletCore/TWAeternityAddress.h>
 #include <TrustWalletCore/TWAeternitySigner.h>
@@ -53,6 +51,8 @@ FOUNDATION_EXPORT const unsigned char TrustWalletCoreVersionString[];
 #include <TrustWalletCore/TWEOSAddress.h>
 #include <TrustWalletCore/TWEOSKeyType.h>
 #include <TrustWalletCore/TWEOSSigner.h>
+#include <TrustWalletCore/TWEthereumAbiEncoder.h>
+#include <TrustWalletCore/TWEthereumAbiFunction.h>
 #include <TrustWalletCore/TWEthereumAddress.h>
 #include <TrustWalletCore/TWEthereumChainID.h>
 #include <TrustWalletCore/TWEthereumSigner.h>
@@ -66,8 +66,6 @@ FOUNDATION_EXPORT const unsigned char TrustWalletCoreVersionString[];
 #include <TrustWalletCore/TWHarmonyChainID.h>
 #include <TrustWalletCore/TWHarmonySigner.h>
 #include <TrustWalletCore/TWHash.h>
-#include <TrustWalletCore/TWIOSTAccount.h>
-#include <TrustWalletCore/TWIOSTSigner.h>
 #include <TrustWalletCore/TWIconAddress.h>
 #include <TrustWalletCore/TWIconAddressType.h>
 #include <TrustWalletCore/TWIconSigner.h>
@@ -76,7 +74,6 @@ FOUNDATION_EXPORT const unsigned char TrustWalletCoreVersionString[];
 #include <TrustWalletCore/TWKeyDerivation.h>
 #include <TrustWalletCore/TWNEARAddress.h>
 #include <TrustWalletCore/TWNEARSigner.h>
-#include <TrustWalletCore/TWNEOAddress.h>
 #include <TrustWalletCore/TWNULSAddress.h>
 #include <TrustWalletCore/TWNULSSigner.h>
 #include <TrustWalletCore/TWNanoAddress.h>
@@ -94,19 +91,18 @@ FOUNDATION_EXPORT const unsigned char TrustWalletCoreVersionString[];
 #include <TrustWalletCore/TWPurpose.h>
 #include <TrustWalletCore/TWRippleAddress.h>
 #include <TrustWalletCore/TWRippleSigner.h>
+#include <TrustWalletCore/TWRippleXAddress.h>
 #include <TrustWalletCore/TWSegwitAddress.h>
-#include <TrustWalletCore/TWSemuxAddress.h>
-#include <TrustWalletCore/TWSemuxSigner.h>
 #include <TrustWalletCore/TWSolanaAddress.h>
 #include <TrustWalletCore/TWSolanaSigner.h>
-#include <TrustWalletCore/TWSteemAddress.h>
-#include <TrustWalletCore/TWSteemSigner.h>
 #include <TrustWalletCore/TWStellarAddress.h>
 #include <TrustWalletCore/TWStellarMemoType.h>
 #include <TrustWalletCore/TWStellarPassphrase.h>
 #include <TrustWalletCore/TWStellarSigner.h>
 #include <TrustWalletCore/TWStellarVersionByte.h>
 #include <TrustWalletCore/TWStoredKey.h>
+#include <TrustWalletCore/TWTONAddress.h>
+#include <TrustWalletCore/TWTONSigner.h>
 #include <TrustWalletCore/TWTezosAddress.h>
 #include <TrustWalletCore/TWTezosSigner.h>
 #include <TrustWalletCore/TWThetaSigner.h>

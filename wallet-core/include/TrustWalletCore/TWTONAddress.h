@@ -8,38 +8,38 @@
 
 #include "TWBase.h"
 #include "TWData.h"
-#include "TWHRP.h"
 #include "TWString.h"
 
 TW_EXTERN_C_BEGIN
 
 struct TWPublicKey;
 
-/// Represents a Ripple address.
+/// Represents a TON address.
 TW_EXPORT_CLASS
-struct TWRippleAddress;
+struct TWTONAddress;
 
 /// Compares two addresses for equality.
 TW_EXPORT_STATIC_METHOD
-bool TWRippleAddressEqual(struct TWRippleAddress *_Nonnull lhs, struct TWRippleAddress *_Nonnull rhs);
+bool TWTONAddressEqual(struct TWTONAddress *_Nonnull lhs, struct TWTONAddress *_Nonnull rhs);
 
-/// Determines if the string is a valid Ripple address.
+/// Determines if the string is a valid TON address.
 TW_EXPORT_STATIC_METHOD
-bool TWRippleAddressIsValidString(TWString *_Nonnull string);
+bool TWTONAddressIsValidString(TWString *_Nonnull string);
 
 /// Creates an address from a string representaion.
 TW_EXPORT_STATIC_METHOD
-struct TWRippleAddress *_Nullable TWRippleAddressCreateWithString(TWString *_Nonnull string);
+struct TWTONAddress *_Nullable TWTONAddressCreateWithString(TWString *_Nonnull string);
 
 /// Creates an address from a public key.
 TW_EXPORT_STATIC_METHOD
-struct TWRippleAddress *_Nonnull TWRippleAddressCreateWithPublicKey(struct TWPublicKey *_Nonnull publicKey);
+struct TWTONAddress *_Nonnull TWTONAddressCreateWithPublicKey(struct TWPublicKey *_Nonnull publicKey);
 
+/// Delete address object
 TW_EXPORT_METHOD
-void TWRippleAddressDelete(struct TWRippleAddress *_Nonnull address);
+void TWTONAddressDelete(struct TWTONAddress *_Nonnull address);
 
 /// Returns the address string representation.
 TW_EXPORT_PROPERTY
-TWString *_Nonnull TWRippleAddressDescription(struct TWRippleAddress *_Nonnull address);
+TWString *_Nonnull TWTONAddressDescription(struct TWTONAddress *_Nonnull address);
 
 TW_EXTERN_C_END

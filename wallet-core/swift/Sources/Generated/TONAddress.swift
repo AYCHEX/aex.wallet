@@ -9,10 +9,10 @@
 
 import Foundation
 
-public final class RippleAddress: Address {
+public final class TONAddress: Address {
 
-    public static func == (lhs: RippleAddress, rhs: RippleAddress) -> Bool {
-        return TWRippleAddressEqual(lhs.rawValue, rhs.rawValue)
+    public static func == (lhs: TONAddress, rhs: TONAddress) -> Bool {
+        return TWTONAddressEqual(lhs.rawValue, rhs.rawValue)
     }
 
     public static func isValidString(string: String) -> Bool {
@@ -20,11 +20,11 @@ public final class RippleAddress: Address {
         defer {
             TWStringDelete(stringString)
         }
-        return TWRippleAddressIsValidString(stringString)
+        return TWTONAddressIsValidString(stringString)
     }
 
     public var description: String {
-        return TWStringNSString(TWRippleAddressDescription(rawValue))
+        return TWStringNSString(TWTONAddressDescription(rawValue))
     }
 
     let rawValue: OpaquePointer
@@ -38,18 +38,18 @@ public final class RippleAddress: Address {
         defer {
             TWStringDelete(stringString)
         }
-        guard let rawValue = TWRippleAddressCreateWithString(stringString) else {
+        guard let rawValue = TWTONAddressCreateWithString(stringString) else {
             return nil
         }
         self.rawValue = rawValue
     }
 
     public init(publicKey: PublicKey) {
-        rawValue = TWRippleAddressCreateWithPublicKey(publicKey.rawValue)
+        rawValue = TWTONAddressCreateWithPublicKey(publicKey.rawValue)
     }
 
     deinit {
-        TWRippleAddressDelete(rawValue)
+        TWTONAddressDelete(rawValue)
     }
 
 }

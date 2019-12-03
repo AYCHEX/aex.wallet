@@ -9,10 +9,10 @@
 
 import Foundation
 
-public final class RippleAddress: Address {
+public final class RippleXAddress: Address {
 
-    public static func == (lhs: RippleAddress, rhs: RippleAddress) -> Bool {
-        return TWRippleAddressEqual(lhs.rawValue, rhs.rawValue)
+    public static func == (lhs: RippleXAddress, rhs: RippleXAddress) -> Bool {
+        return TWRippleXAddressEqual(lhs.rawValue, rhs.rawValue)
     }
 
     public static func isValidString(string: String) -> Bool {
@@ -20,11 +20,15 @@ public final class RippleAddress: Address {
         defer {
             TWStringDelete(stringString)
         }
-        return TWRippleAddressIsValidString(stringString)
+        return TWRippleXAddressIsValidString(stringString)
     }
 
     public var description: String {
-        return TWStringNSString(TWRippleAddressDescription(rawValue))
+        return TWStringNSString(TWRippleXAddressDescription(rawValue))
+    }
+
+    public var tag: UInt32 {
+        return TWRippleXAddressTag(rawValue)
     }
 
     let rawValue: OpaquePointer
@@ -38,18 +42,18 @@ public final class RippleAddress: Address {
         defer {
             TWStringDelete(stringString)
         }
-        guard let rawValue = TWRippleAddressCreateWithString(stringString) else {
+        guard let rawValue = TWRippleXAddressCreateWithString(stringString) else {
             return nil
         }
         self.rawValue = rawValue
     }
 
-    public init(publicKey: PublicKey) {
-        rawValue = TWRippleAddressCreateWithPublicKey(publicKey.rawValue)
+    public init(publicKey: PublicKey, tag: UInt32) {
+        rawValue = TWRippleXAddressCreateWithPublicKey(publicKey.rawValue, tag)
     }
 
     deinit {
-        TWRippleAddressDelete(rawValue)
+        TWRippleXAddressDelete(rawValue)
     }
 
 }

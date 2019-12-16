@@ -206,6 +206,9 @@ public struct TW_Bitcoin_Proto_TransactionPlan {
   /// Selected unspent transaction outputs.
   public var utxos: [TW_Bitcoin_Proto_UnspentTransaction] = []
 
+  /// Zcash branch id
+  public var branchID: Data = SwiftProtobuf.Internal.emptyData
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -630,6 +633,7 @@ extension TW_Bitcoin_Proto_TransactionPlan: SwiftProtobuf.Message, SwiftProtobuf
     3: .same(proto: "fee"),
     4: .same(proto: "change"),
     5: .same(proto: "utxos"),
+    6: .standard(proto: "branch_id"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -640,6 +644,7 @@ extension TW_Bitcoin_Proto_TransactionPlan: SwiftProtobuf.Message, SwiftProtobuf
       case 3: try decoder.decodeSingularInt64Field(value: &self.fee)
       case 4: try decoder.decodeSingularInt64Field(value: &self.change)
       case 5: try decoder.decodeRepeatedMessageField(value: &self.utxos)
+      case 6: try decoder.decodeSingularBytesField(value: &self.branchID)
       default: break
       }
     }
@@ -661,6 +666,9 @@ extension TW_Bitcoin_Proto_TransactionPlan: SwiftProtobuf.Message, SwiftProtobuf
     if !self.utxos.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.utxos, fieldNumber: 5)
     }
+    if !self.branchID.isEmpty {
+      try visitor.visitSingularBytesField(value: self.branchID, fieldNumber: 6)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -670,6 +678,7 @@ extension TW_Bitcoin_Proto_TransactionPlan: SwiftProtobuf.Message, SwiftProtobuf
     if lhs.fee != rhs.fee {return false}
     if lhs.change != rhs.change {return false}
     if lhs.utxos != rhs.utxos {return false}
+    if lhs.branchID != rhs.branchID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

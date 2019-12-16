@@ -60,4 +60,6 @@ public enum CoinType: UInt32, CaseIterable {
     case terra = 330
     case harmony = 1023
     case algorand = 283
+    case kusama = 434
+    case polkadot = 354
 }

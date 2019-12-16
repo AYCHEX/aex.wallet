@@ -189,6 +189,69 @@ public struct TW_Binance_Proto_SendOrder {
   public init() {}
 }
 
+public struct TW_Binance_Proto_TokenIssueOrder {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// 0x17EFAB80      // prefix
+  public var from: Data = SwiftProtobuf.Internal.emptyData
+
+  /// token name
+  public var name: String = String()
+
+  /// token symbol, in full name with "-" suffix
+  public var symbol: String = String()
+
+  /// total supply
+  public var totalSupply: Int64 = 0
+
+  /// mintable
+  public var mintable: Bool = false
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct TW_Binance_Proto_TokenMintOrder {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// 0x467E0829      // prefix
+  public var from: Data = SwiftProtobuf.Internal.emptyData
+
+  /// token symbol, in full name with "-" suffix
+  public var symbol: String = String()
+
+  /// amount to mint
+  public var amount: Int64 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct TW_Binance_Proto_TokenBurnOrder {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// 0x7ED2D2A0      // prefix
+  public var from: Data = SwiftProtobuf.Internal.emptyData
+
+  /// token symbol, in full name with "-" suffix
+  public var symbol: String = String()
+
+  /// amount to burn
+  public var amount: Int64 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
 public struct TW_Binance_Proto_TokenFreezeOrder {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -423,6 +486,30 @@ public struct TW_Binance_Proto_SigningInput {
     set {_uniqueStorage()._orderOneof = .refundHtltOrder(newValue)}
   }
 
+  public var issueOrder: TW_Binance_Proto_TokenIssueOrder {
+    get {
+      if case .issueOrder(let v)? = _storage._orderOneof {return v}
+      return TW_Binance_Proto_TokenIssueOrder()
+    }
+    set {_uniqueStorage()._orderOneof = .issueOrder(newValue)}
+  }
+
+  public var mintOrder: TW_Binance_Proto_TokenMintOrder {
+    get {
+      if case .mintOrder(let v)? = _storage._orderOneof {return v}
+      return TW_Binance_Proto_TokenMintOrder()
+    }
+    set {_uniqueStorage()._orderOneof = .mintOrder(newValue)}
+  }
+
+  public var burnOrder: TW_Binance_Proto_TokenBurnOrder {
+    get {
+      if case .burnOrder(let v)? = _storage._orderOneof {return v}
+      return TW_Binance_Proto_TokenBurnOrder()
+    }
+    set {_uniqueStorage()._orderOneof = .burnOrder(newValue)}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public enum OneOf_OrderOneof: Equatable {
@@ -435,6 +522,9 @@ public struct TW_Binance_Proto_SigningInput {
     case depositHtltOrder(TW_Binance_Proto_DepositHTLTOrder)
     case claimHtltOrder(TW_Binance_Proto_ClaimHTLOrder)
     case refundHtltOrder(TW_Binance_Proto_RefundHTLTOrder)
+    case issueOrder(TW_Binance_Proto_TokenIssueOrder)
+    case mintOrder(TW_Binance_Proto_TokenMintOrder)
+    case burnOrder(TW_Binance_Proto_TokenBurnOrder)
 
   #if !swift(>=4.1)
     public static func ==(lhs: TW_Binance_Proto_SigningInput.OneOf_OrderOneof, rhs: TW_Binance_Proto_SigningInput.OneOf_OrderOneof) -> Bool {
@@ -448,6 +538,9 @@ public struct TW_Binance_Proto_SigningInput {
       case (.depositHtltOrder(let l), .depositHtltOrder(let r)): return l == r
       case (.claimHtltOrder(let l), .claimHtltOrder(let r)): return l == r
       case (.refundHtltOrder(let l), .refundHtltOrder(let r)): return l == r
+      case (.issueOrder(let l), .issueOrder(let r)): return l == r
+      case (.mintOrder(let l), .mintOrder(let r)): return l == r
+      case (.burnOrder(let l), .burnOrder(let r)): return l == r
       default: return false
       }
     }
@@ -848,6 +941,141 @@ extension TW_Binance_Proto_SendOrder.Output: SwiftProtobuf.Message, SwiftProtobu
   }
 }
 
+extension TW_Binance_Proto_TokenIssueOrder: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".TokenIssueOrder"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "from"),
+    2: .same(proto: "name"),
+    3: .same(proto: "symbol"),
+    4: .standard(proto: "total_supply"),
+    5: .same(proto: "mintable"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBytesField(value: &self.from)
+      case 2: try decoder.decodeSingularStringField(value: &self.name)
+      case 3: try decoder.decodeSingularStringField(value: &self.symbol)
+      case 4: try decoder.decodeSingularInt64Field(value: &self.totalSupply)
+      case 5: try decoder.decodeSingularBoolField(value: &self.mintable)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.from.isEmpty {
+      try visitor.visitSingularBytesField(value: self.from, fieldNumber: 1)
+    }
+    if !self.name.isEmpty {
+      try visitor.visitSingularStringField(value: self.name, fieldNumber: 2)
+    }
+    if !self.symbol.isEmpty {
+      try visitor.visitSingularStringField(value: self.symbol, fieldNumber: 3)
+    }
+    if self.totalSupply != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalSupply, fieldNumber: 4)
+    }
+    if self.mintable != false {
+      try visitor.visitSingularBoolField(value: self.mintable, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: TW_Binance_Proto_TokenIssueOrder, rhs: TW_Binance_Proto_TokenIssueOrder) -> Bool {
+    if lhs.from != rhs.from {return false}
+    if lhs.name != rhs.name {return false}
+    if lhs.symbol != rhs.symbol {return false}
+    if lhs.totalSupply != rhs.totalSupply {return false}
+    if lhs.mintable != rhs.mintable {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension TW_Binance_Proto_TokenMintOrder: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".TokenMintOrder"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "from"),
+    2: .same(proto: "symbol"),
+    3: .same(proto: "amount"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBytesField(value: &self.from)
+      case 2: try decoder.decodeSingularStringField(value: &self.symbol)
+      case 3: try decoder.decodeSingularInt64Field(value: &self.amount)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.from.isEmpty {
+      try visitor.visitSingularBytesField(value: self.from, fieldNumber: 1)
+    }
+    if !self.symbol.isEmpty {
+      try visitor.visitSingularStringField(value: self.symbol, fieldNumber: 2)
+    }
+    if self.amount != 0 {
+      try visitor.visitSingularInt64Field(value: self.amount, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: TW_Binance_Proto_TokenMintOrder, rhs: TW_Binance_Proto_TokenMintOrder) -> Bool {
+    if lhs.from != rhs.from {return false}
+    if lhs.symbol != rhs.symbol {return false}
+    if lhs.amount != rhs.amount {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension TW_Binance_Proto_TokenBurnOrder: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".TokenBurnOrder"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "from"),
+    2: .same(proto: "symbol"),
+    3: .same(proto: "amount"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBytesField(value: &self.from)
+      case 2: try decoder.decodeSingularStringField(value: &self.symbol)
+      case 3: try decoder.decodeSingularInt64Field(value: &self.amount)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.from.isEmpty {
+      try visitor.visitSingularBytesField(value: self.from, fieldNumber: 1)
+    }
+    if !self.symbol.isEmpty {
+      try visitor.visitSingularStringField(value: self.symbol, fieldNumber: 2)
+    }
+    if self.amount != 0 {
+      try visitor.visitSingularInt64Field(value: self.amount, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: TW_Binance_Proto_TokenBurnOrder, rhs: TW_Binance_Proto_TokenBurnOrder) -> Bool {
+    if lhs.from != rhs.from {return false}
+    if lhs.symbol != rhs.symbol {return false}
+    if lhs.amount != rhs.amount {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension TW_Binance_Proto_TokenFreezeOrder: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TokenFreezeOrder"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -1148,6 +1376,9 @@ extension TW_Binance_Proto_SigningInput: SwiftProtobuf.Message, SwiftProtobuf._M
     14: .standard(proto: "depositHTLT_order"),
     15: .standard(proto: "claimHTLT_order"),
     16: .standard(proto: "refundHTLT_order"),
+    17: .standard(proto: "issue_order"),
+    18: .standard(proto: "mint_order"),
+    19: .standard(proto: "burn_order"),
   ]
 
   fileprivate class _StorageClass {
@@ -1264,6 +1495,30 @@ extension TW_Binance_Proto_SigningInput: SwiftProtobuf.Message, SwiftProtobuf._M
           }
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._orderOneof = .refundHtltOrder(v)}
+        case 17:
+          var v: TW_Binance_Proto_TokenIssueOrder?
+          if let current = _storage._orderOneof {
+            try decoder.handleConflictingOneOf()
+            if case .issueOrder(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._orderOneof = .issueOrder(v)}
+        case 18:
+          var v: TW_Binance_Proto_TokenMintOrder?
+          if let current = _storage._orderOneof {
+            try decoder.handleConflictingOneOf()
+            if case .mintOrder(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._orderOneof = .mintOrder(v)}
+        case 19:
+          var v: TW_Binance_Proto_TokenBurnOrder?
+          if let current = _storage._orderOneof {
+            try decoder.handleConflictingOneOf()
+            if case .burnOrder(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._orderOneof = .burnOrder(v)}
         default: break
         }
       }
@@ -1309,6 +1564,12 @@ extension TW_Binance_Proto_SigningInput: SwiftProtobuf.Message, SwiftProtobuf._M
         try visitor.visitSingularMessageField(value: v, fieldNumber: 15)
       case .refundHtltOrder(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 16)
+      case .issueOrder(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 17)
+      case .mintOrder(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 18)
+      case .burnOrder(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 19)
       case nil: break
       }
     }

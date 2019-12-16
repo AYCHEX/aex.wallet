@@ -72,6 +72,7 @@ FOUNDATION_EXPORT const unsigned char TrustWalletCoreVersionString[];
 #include <TrustWalletCore/TWIoTeXAddress.h>
 #include <TrustWalletCore/TWIoTeXSigner.h>
 #include <TrustWalletCore/TWKeyDerivation.h>
+#include <TrustWalletCore/TWKusamaAddress.h>
 #include <TrustWalletCore/TWNEARAddress.h>
 #include <TrustWalletCore/TWNEARSigner.h>
 #include <TrustWalletCore/TWNULSAddress.h>
@@ -85,6 +86,7 @@ FOUNDATION_EXPORT const unsigned char TrustWalletCoreVersionString[];
 #include <TrustWalletCore/TWOntologyAddress.h>
 #include <TrustWalletCore/TWOntologySigner.h>
 #include <TrustWalletCore/TWPKCS8.h>
+#include <TrustWalletCore/TWPolkadotAddress.h>
 #include <TrustWalletCore/TWPrivateKey.h>
 #include <TrustWalletCore/TWPublicKey.h>
 #include <TrustWalletCore/TWPublicKeyType.h>
@@ -92,6 +94,7 @@ FOUNDATION_EXPORT const unsigned char TrustWalletCoreVersionString[];
 #include <TrustWalletCore/TWRippleAddress.h>
 #include <TrustWalletCore/TWRippleSigner.h>
 #include <TrustWalletCore/TWRippleXAddress.h>
+#include <TrustWalletCore/TWSS58AddressType.h>
 #include <TrustWalletCore/TWSegwitAddress.h>
 #include <TrustWalletCore/TWSolanaAddress.h>
 #include <TrustWalletCore/TWSolanaSigner.h>

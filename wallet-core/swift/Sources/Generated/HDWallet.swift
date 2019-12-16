@@ -84,8 +84,16 @@ public final class HDWallet {
         TWHDWalletDelete(rawValue)
     }
 
+    public func getMasterKey(curve: Curve) -> PrivateKey {
+        return PrivateKey(rawValue: TWHDWalletGetMasterKey(rawValue, TWCurve(rawValue: curve.rawValue)))
+    }
+
     public func getKeyForCoin(coin: CoinType) -> PrivateKey {
         return PrivateKey(rawValue: TWHDWalletGetKeyForCoin(rawValue, TWCoinType(rawValue: coin.rawValue)))
+    }
+
+    public func getAddressForCoin(coin: CoinType) -> String {
+        return TWStringNSString(TWHDWalletGetAddressForCoin(rawValue, TWCoinType(rawValue: coin.rawValue)))
     }
 
     public func getKey(derivationPath: String) -> PrivateKey {

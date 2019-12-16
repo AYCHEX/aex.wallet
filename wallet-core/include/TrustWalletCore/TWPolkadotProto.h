@@ -8,8 +8,6 @@
 
 #include "TWData.h"
 
-typedef TWData *_Nonnull TW_Cosmos_Proto_Amount;
-typedef TWData *_Nonnull TW_Cosmos_Proto_Fee;
-typedef TWData *_Nonnull TW_Cosmos_Proto_Message;
-typedef TWData *_Nonnull TW_Cosmos_Proto_SigningInput;
-typedef TWData *_Nonnull TW_Cosmos_Proto_SigningOutput;
+typedef TWData *_Nonnull TW_Polkadot_Proto_ExtrinsicsTransfer;
+typedef TWData *_Nonnull TW_Polkadot_Proto_SigningInput;
+typedef TWData *_Nonnull TW_Polkadot_Proto_SigningOutput;

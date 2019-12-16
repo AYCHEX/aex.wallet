@@ -1,3 +1,4 @@
+
 // Copyright © 2017-2019 Trust Wallet.
 //
 // This file is part of Trust. The full Trust copyright notice, including
@@ -5,19 +6,17 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #pragma once
-
 #include "TWBase.h"
-#include "TWData.h"
-#include "TWZilliqaProto.h"
 
 TW_EXTERN_C_BEGIN
 
-/// Helper class to sign Zilliqa transactions.
-TW_EXPORT_CLASS
-struct TWZilliqaSigner;
-
-/// Signs a transaction.
-TW_EXPORT_STATIC_METHOD
-TW_Zilliqa_Proto_SigningOutput TWZilliqaSignerSign(TW_Zilliqa_Proto_SigningInput input);
+///   Substrate based chains Address Type
+///
+/// - See Also: https://github.com/paritytech/substrate/wiki/External-Address-Format-(SS58)#address-type
+TW_EXPORT_ENUM(uint8_t)
+enum TWSS58AddressType {
+    TWSS58AddressTypePolkadot = 0,
+    TWSS58AddressTypeKusama = 2,
+};
 
 TW_EXTERN_C_END

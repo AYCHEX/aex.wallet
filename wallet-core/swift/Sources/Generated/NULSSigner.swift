@@ -20,6 +20,30 @@ public final class NULSSigner {
         return try! TW_NULS_Proto_SigningOutput(serializedData: resultData)
     }
 
+    public static func message(input: TW_NULS_Proto_SigningInput) -> Data {
+        let inputData = TWDataCreateWithNSData(try! input.serializedData())
+        defer {
+            TWDataDelete(inputData)
+        }
+        return TWDataNSData(TWNULSSignerMessage(inputData))
+    }
+
+    public static func transaction(input: TW_NULS_Proto_SigningInput, pubkey: Data, sig: Data) -> Data {
+        let inputData = TWDataCreateWithNSData(try! input.serializedData())
+        defer {
+            TWDataDelete(inputData)
+        }
+        let pubkeyData = TWDataCreateWithNSData(pubkey)
+        defer {
+            TWDataDelete(pubkeyData)
+        }
+        let sigData = TWDataCreateWithNSData(sig)
+        defer {
+            TWDataDelete(sigData)
+        }
+        return TWDataNSData(TWNULSSignerTransaction(inputData, pubkeyData, sigData))
+    }
+
     let rawValue: OpaquePointer
 
     init(rawValue: OpaquePointer) {

@@ -9,10 +9,10 @@
 
 import Foundation
 
-public final class PolkadotAddress: Address {
+public final class IOSTAccount {
 
-    public static func == (lhs: PolkadotAddress, rhs: PolkadotAddress) -> Bool {
-        return TWPolkadotAddressEqual(lhs.rawValue, rhs.rawValue)
+    public static func == (lhs: IOSTAccount, rhs: IOSTAccount) -> Bool {
+        return TWIOSTAccountEqual(lhs.rawValue, rhs.rawValue)
     }
 
     public static func isValidString(string: String) -> Bool {
@@ -20,11 +20,11 @@ public final class PolkadotAddress: Address {
         defer {
             TWStringDelete(stringString)
         }
-        return TWPolkadotAddressIsValidString(stringString)
+        return TWIOSTAccountIsValidString(stringString)
     }
 
     public var description: String {
-        return TWStringNSString(TWPolkadotAddressDescription(rawValue))
+        return TWStringNSString(TWIOSTAccountDescription(rawValue))
     }
 
     let rawValue: OpaquePointer
@@ -38,18 +38,14 @@ public final class PolkadotAddress: Address {
         defer {
             TWStringDelete(stringString)
         }
-        guard let rawValue = TWPolkadotAddressCreateWithString(stringString) else {
+        guard let rawValue = TWIOSTAccountCreateWithString(stringString) else {
             return nil
         }
         self.rawValue = rawValue
     }
 
-    public init(publicKey: PublicKey) {
-        rawValue = TWPolkadotAddressCreateWithPublicKey(publicKey.rawValue)
-    }
-
     deinit {
-        TWPolkadotAddressDelete(rawValue)
+        TWIOSTAccountDelete(rawValue)
     }
 
 }

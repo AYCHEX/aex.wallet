@@ -20,6 +20,26 @@ public final class VeChainSigner {
         return try! TW_VeChain_Proto_SigningOutput(serializedData: resultData)
     }
 
+    public static func message(input: TW_VeChain_Proto_SigningInput) -> Data {
+        let inputData = TWDataCreateWithNSData(try! input.serializedData())
+        defer {
+            TWDataDelete(inputData)
+        }
+        return TWDataNSData(TWVeChainSignerMessage(inputData))
+    }
+
+    public static func transaction(data: TW_VeChain_Proto_SigningInput, signature: Data) -> Data {
+        let dataData = TWDataCreateWithNSData(try! data.serializedData())
+        defer {
+            TWDataDelete(dataData)
+        }
+        let signatureData = TWDataCreateWithNSData(signature)
+        defer {
+            TWDataDelete(signatureData)
+        }
+        return TWDataNSData(TWVeChainSignerTransaction(dataData, signatureData))
+    }
+
     let rawValue: OpaquePointer
 
     init(rawValue: OpaquePointer) {

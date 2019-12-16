@@ -52,6 +52,34 @@ public struct TW_Ontology_Proto_SigningInput {
   public init() {}
 }
 
+public struct TW_Ontology_Proto_TransactionInput {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var contract: String = String()
+
+  public var method: String = String()
+
+  /// base58 encode address string (160-bit number)
+  public var ownerAddress: String = String()
+
+  /// base58 encode address string (160-bit number)
+  public var toAddress: String = String()
+
+  public var amount: UInt64 = 0
+
+  public var gasPrice: UInt64 = 0
+
+  public var gasLimit: UInt64 = 0
+
+  public var nonce: UInt32 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
 /// Transaction signing output.
 public struct TW_Ontology_Proto_SigningOutput {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -147,6 +175,77 @@ extension TW_Ontology_Proto_SigningInput: SwiftProtobuf.Message, SwiftProtobuf._
     if lhs.gasPrice != rhs.gasPrice {return false}
     if lhs.gasLimit != rhs.gasLimit {return false}
     if lhs.queryAddress != rhs.queryAddress {return false}
+    if lhs.nonce != rhs.nonce {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension TW_Ontology_Proto_TransactionInput: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".TransactionInput"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "contract"),
+    2: .same(proto: "method"),
+    3: .standard(proto: "owner_address"),
+    4: .standard(proto: "to_address"),
+    5: .same(proto: "amount"),
+    7: .standard(proto: "gas_price"),
+    8: .standard(proto: "gas_limit"),
+    10: .same(proto: "nonce"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.contract)
+      case 2: try decoder.decodeSingularStringField(value: &self.method)
+      case 3: try decoder.decodeSingularStringField(value: &self.ownerAddress)
+      case 4: try decoder.decodeSingularStringField(value: &self.toAddress)
+      case 5: try decoder.decodeSingularUInt64Field(value: &self.amount)
+      case 7: try decoder.decodeSingularUInt64Field(value: &self.gasPrice)
+      case 8: try decoder.decodeSingularUInt64Field(value: &self.gasLimit)
+      case 10: try decoder.decodeSingularUInt32Field(value: &self.nonce)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.contract.isEmpty {
+      try visitor.visitSingularStringField(value: self.contract, fieldNumber: 1)
+    }
+    if !self.method.isEmpty {
+      try visitor.visitSingularStringField(value: self.method, fieldNumber: 2)
+    }
+    if !self.ownerAddress.isEmpty {
+      try visitor.visitSingularStringField(value: self.ownerAddress, fieldNumber: 3)
+    }
+    if !self.toAddress.isEmpty {
+      try visitor.visitSingularStringField(value: self.toAddress, fieldNumber: 4)
+    }
+    if self.amount != 0 {
+      try visitor.visitSingularUInt64Field(value: self.amount, fieldNumber: 5)
+    }
+    if self.gasPrice != 0 {
+      try visitor.visitSingularUInt64Field(value: self.gasPrice, fieldNumber: 7)
+    }
+    if self.gasLimit != 0 {
+      try visitor.visitSingularUInt64Field(value: self.gasLimit, fieldNumber: 8)
+    }
+    if self.nonce != 0 {
+      try visitor.visitSingularUInt32Field(value: self.nonce, fieldNumber: 10)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: TW_Ontology_Proto_TransactionInput, rhs: TW_Ontology_Proto_TransactionInput) -> Bool {
+    if lhs.contract != rhs.contract {return false}
+    if lhs.method != rhs.method {return false}
+    if lhs.ownerAddress != rhs.ownerAddress {return false}
+    if lhs.toAddress != rhs.toAddress {return false}
+    if lhs.amount != rhs.amount {return false}
+    if lhs.gasPrice != rhs.gasPrice {return false}
+    if lhs.gasLimit != rhs.gasLimit {return false}
     if lhs.nonce != rhs.nonce {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

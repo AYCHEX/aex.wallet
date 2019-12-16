@@ -5,4 +5,5 @@
 // file LICENSE at the root of the source code distribution tree.
 
 public typealias OntologySigningInput = TW_Ontology_Proto_SigningInput;
+public typealias OntologyTransactionInput = TW_Ontology_Proto_TransactionInput;
 public typealias OntologySigningOutput = TW_Ontology_Proto_SigningOutput;

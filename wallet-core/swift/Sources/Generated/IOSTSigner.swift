@@ -9,31 +9,27 @@
 
 import Foundation
 
-public final class TronSigner {
+public final class IOSTSigner {
 
-    public static func sign(input: TW_Tron_Proto_SigningInput) -> TW_Tron_Proto_SigningOutput {
+    public static func sign(input: TW_IOST_Proto_SigningInput) -> TW_IOST_Proto_SigningOutput {
         let inputData = TWDataCreateWithNSData(try! input.serializedData())
         defer {
             TWDataDelete(inputData)
         }
-        let resultData = TWDataNSData(TWTronSignerSign(inputData))
-        return try! TW_Tron_Proto_SigningOutput(serializedData: resultData)
+        let resultData = TWDataNSData(TWIOSTSignerSign(inputData))
+        return try! TW_IOST_Proto_SigningOutput(serializedData: resultData)
     }
 
-    public static func message(input: TW_Tron_Proto_SigningInput) -> Data {
+    public static func message(input: TW_IOST_Proto_SigningInput, pubkey: Data, algorithm: UInt8) -> Data {
         let inputData = TWDataCreateWithNSData(try! input.serializedData())
         defer {
             TWDataDelete(inputData)
         }
-        return TWDataNSData(TWTronSignerMessage(inputData))
-    }
-
-    public static func transaction(data: TW_Tron_Proto_SigningInput) -> Data {
-        let dataData = TWDataCreateWithNSData(try! data.serializedData())
+        let pubkeyData = TWDataCreateWithNSData(pubkey)
         defer {
-            TWDataDelete(dataData)
+            TWDataDelete(pubkeyData)
         }
-        return TWDataNSData(TWTronSignerTransaction(dataData))
+        return TWDataNSData(TWIOSTSignerMessage(inputData, pubkeyData, algorithm))
     }
 
     let rawValue: OpaquePointer

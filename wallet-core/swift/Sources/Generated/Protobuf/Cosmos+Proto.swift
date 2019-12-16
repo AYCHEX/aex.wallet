@@ -6,6 +6,11 @@
 
 public typealias CosmosAmount = TW_Cosmos_Proto_Amount;
 public typealias CosmosFee = TW_Cosmos_Proto_Fee;
-public typealias CosmosMessage = TW_Cosmos_Proto_Message;
+public typealias CosmosSendCoinsMessage = TW_Cosmos_Proto_SendCoinsMessage;
+public typealias CosmosStakeMessage = TW_Cosmos_Proto_StakeMessage;
+public typealias CosmosReStakeMessage = TW_Cosmos_Proto_ReStakeMessage;
+public typealias CosmosWithdrawStakeRewardMessage = TW_Cosmos_Proto_WithdrawStakeRewardMessage;
+public typealias CosmosSignature = TW_Cosmos_Proto_Signature;
+public typealias CosmosTransaction = TW_Cosmos_Proto_Transaction;
 public typealias CosmosSigningInput = TW_Cosmos_Proto_SigningInput;
 public typealias CosmosSigningOutput = TW_Cosmos_Proto_SigningOutput;

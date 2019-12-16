@@ -20,6 +20,26 @@ public final class EthereumSigner {
         return try! TW_Ethereum_Proto_SigningOutput(serializedData: resultData)
     }
 
+    public static func message(data: TW_Ethereum_Proto_SigningInput) -> Data {
+        let dataData = TWDataCreateWithNSData(try! data.serializedData())
+        defer {
+            TWDataDelete(dataData)
+        }
+        return TWDataNSData(TWEthereumSignerMessage(dataData))
+    }
+
+    public static func transaction(data: TW_Ethereum_Proto_SigningInput, signature: Data) -> Data {
+        let dataData = TWDataCreateWithNSData(try! data.serializedData())
+        defer {
+            TWDataDelete(dataData)
+        }
+        let signatureData = TWDataCreateWithNSData(signature)
+        defer {
+            TWDataDelete(signatureData)
+        }
+        return TWDataNSData(TWEthereumSignerTransaction(dataData, signatureData))
+    }
+
     let rawValue: OpaquePointer
 
     init(rawValue: OpaquePointer) {

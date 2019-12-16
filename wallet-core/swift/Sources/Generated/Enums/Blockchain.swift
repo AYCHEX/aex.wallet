@@ -37,5 +37,4 @@ public enum Blockchain: UInt32, CaseIterable {
     case near = 26
     case algorand = 27
     case ton = 28
-    case polkadot = 29
 }

@@ -52,6 +52,10 @@ public final class NULSAddress: Address {
         rawValue = TWNULSAddressCreateWithPublicKey(publicKey.rawValue)
     }
 
+    public init(publicKey: PublicKey, isMainnet: Bool) {
+        rawValue = TWNULSAddressCreateWithPublicKeyAndChain(publicKey.rawValue, isMainnet)
+    }
+
     deinit {
         TWNULSAddressDelete(rawValue)
     }

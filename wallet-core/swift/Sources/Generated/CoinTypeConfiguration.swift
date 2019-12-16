@@ -27,14 +27,6 @@ public struct CoinTypeConfiguration {
         return TWStringNSString(TWCoinTypeConfigurationGetTransactionURL(TWCoinType(rawValue: type.rawValue), transactionIDString))
     }
 
-    public static func getAccountURL(type: CoinType, accountID: String) -> String {
-        let accountIDString = TWStringCreateWithNSString(accountID)
-        defer {
-            TWStringDelete(accountIDString)
-        }
-        return TWStringNSString(TWCoinTypeConfigurationGetAccountURL(TWCoinType(rawValue: type.rawValue), accountIDString))
-    }
-
     public static func getID(type: CoinType) -> String {
         return TWStringNSString(TWCoinTypeConfigurationGetID(TWCoinType(rawValue: type.rawValue)))
     }

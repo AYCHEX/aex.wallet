@@ -20,6 +20,30 @@ public final class BinanceSigner {
         return try! TW_Binance_Proto_SigningOutput(serializedData: resultData)
     }
 
+    public static func message(data: TW_Binance_Proto_SigningInput) -> Data {
+        let dataData = TWDataCreateWithNSData(try! data.serializedData())
+        defer {
+            TWDataDelete(dataData)
+        }
+        return TWDataNSData(TWBinanceSignerMessage(dataData))
+    }
+
+    public static func transaction(data: TW_Binance_Proto_SigningInput, pubKey: Data, signature: Data) -> Data {
+        let dataData = TWDataCreateWithNSData(try! data.serializedData())
+        defer {
+            TWDataDelete(dataData)
+        }
+        let pubKeyData = TWDataCreateWithNSData(pubKey)
+        defer {
+            TWDataDelete(pubKeyData)
+        }
+        let signatureData = TWDataCreateWithNSData(signature)
+        defer {
+            TWDataDelete(signatureData)
+        }
+        return TWDataNSData(TWBinanceSignerTransaction(dataData, pubKeyData, signatureData))
+    }
+
     let rawValue: OpaquePointer
 
     init(rawValue: OpaquePointer) {

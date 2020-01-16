@@ -11,6 +11,26 @@ import Foundation
 
 public final class GroestlcoinTransactionSigner {
 
+    public static func message(data: TW_Bitcoin_Proto_SigningInput) -> Data {
+        let dataData = TWDataCreateWithNSData(try! data.serializedData())
+        defer {
+            TWDataDelete(dataData)
+        }
+        return TWDataNSData(TWGroestlcoinTransactionSignerMessage(dataData))
+    }
+
+    public static func transaction(data: TW_Bitcoin_Proto_SigningInput, planData: TW_Bitcoin_Proto_TransactionPlan) -> Data {
+        let dataData = TWDataCreateWithNSData(try! data.serializedData())
+        defer {
+            TWDataDelete(dataData)
+        }
+        let planDataData = TWDataCreateWithNSData(try! planData.serializedData())
+        defer {
+            TWDataDelete(planDataData)
+        }
+        return TWDataNSData(TWGroestlcoinTransactionSignerTransaction(dataData, planDataData))
+    }
+
     let rawValue: OpaquePointer
 
     init(rawValue: OpaquePointer) {

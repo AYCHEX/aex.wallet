@@ -91,6 +91,18 @@ public struct Hash {
         return TWDataNSData(TWHashBlake2b(dataData, size))
     }
 
+    public static func blake2bPersonal(data: Data, personal: Data, outlen: Int) -> Data {
+        let dataData = TWDataCreateWithNSData(data)
+        defer {
+            TWDataDelete(dataData)
+        }
+        let personalData = TWDataCreateWithNSData(personal)
+        defer {
+            TWDataDelete(personalData)
+        }
+        return TWDataNSData(TWHashBlake2bPersonal(dataData, personalData, outlen))
+    }
+
     public static func sha256RIPEMD(data: Data) -> Data {
         let dataData = TWDataCreateWithNSData(data)
         defer {

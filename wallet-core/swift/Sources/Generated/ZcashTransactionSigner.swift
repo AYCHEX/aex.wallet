@@ -11,6 +11,26 @@ import Foundation
 
 public final class ZcashTransactionSigner {
 
+    public static func message(data: TW_Bitcoin_Proto_SigningInput) -> Data {
+        let dataData = TWDataCreateWithNSData(try! data.serializedData())
+        defer {
+            TWDataDelete(dataData)
+        }
+        return TWDataNSData(TWZcashTransactionSignerMessage(dataData))
+    }
+
+    public static func transaction(data: TW_Bitcoin_Proto_SigningInput, plan: TW_Bitcoin_Proto_TransactionPlan) -> Data {
+        let dataData = TWDataCreateWithNSData(try! data.serializedData())
+        defer {
+            TWDataDelete(dataData)
+        }
+        let planData = TWDataCreateWithNSData(try! plan.serializedData())
+        defer {
+            TWDataDelete(planData)
+        }
+        return TWDataNSData(TWZcashTransactionSignerTransaction(dataData, planData))
+    }
+
     let rawValue: OpaquePointer
 
     init(rawValue: OpaquePointer) {

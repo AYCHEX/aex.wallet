@@ -34,7 +34,7 @@ enum TWHRP {
     TWHRPZilliqa     /* "zil" */,
 };
 
-static const char *_Nonnull HRP_BINANCE = "tbnb";
+static const char *_Nonnull HRP_BINANCE = "bnb";
 static const char *_Nonnull HRP_BITCOIN = "bc";
 static const char *_Nonnull HRP_BITCOINCASH = "bitcoincash";
 static const char *_Nonnull HRP_COSMOS = "cosmos";

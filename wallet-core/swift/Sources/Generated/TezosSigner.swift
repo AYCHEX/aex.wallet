@@ -20,6 +20,26 @@ public final class TezosSigner {
         return try! TW_Tezos_Proto_SigningOutput(serializedData: resultData)
     }
 
+    public static func message(input: TW_Tezos_Proto_SigningInput) -> Data {
+        let inputData = TWDataCreateWithNSData(try! input.serializedData())
+        defer {
+            TWDataDelete(inputData)
+        }
+        return TWDataNSData(TWTezosSignerMessage(inputData))
+    }
+
+    public static func transaction(input: TW_Tezos_Proto_SigningInput, signature: Data) -> Data {
+        let inputData = TWDataCreateWithNSData(try! input.serializedData())
+        defer {
+            TWDataDelete(inputData)
+        }
+        let signatureData = TWDataCreateWithNSData(signature)
+        defer {
+            TWDataDelete(signatureData)
+        }
+        return TWDataNSData(TWTezosSignerTransaction(inputData, signatureData))
+    }
+
     let rawValue: OpaquePointer
 
     init(rawValue: OpaquePointer) {

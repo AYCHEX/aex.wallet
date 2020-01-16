@@ -112,7 +112,6 @@ FOUNDATION_EXPORT const unsigned char TrustWalletCoreVersionString[];
 #include <TrustWalletCore/TWTronSigner.h>
 #include <TrustWalletCore/TWVeChainSigner.h>
 #include <TrustWalletCore/TWWanchainAddress.h>
-#include <TrustWalletCore/TWWanchainSigner.h>
 #include <TrustWalletCore/TWWavesAddress.h>
 #include <TrustWalletCore/TWWavesSigner.h>
 #include <TrustWalletCore/TWX509.h>

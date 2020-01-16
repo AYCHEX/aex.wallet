@@ -20,6 +20,26 @@ public final class IconSigner {
         return try! TW_Icon_Proto_SigningOutput(serializedData: resultData)
     }
 
+    public static func message(data: TW_Icon_Proto_SigningInput) -> String {
+        let dataData = TWDataCreateWithNSData(try! data.serializedData())
+        defer {
+            TWDataDelete(dataData)
+        }
+        return TWStringNSString(TWIconSignerMessage(dataData))
+    }
+
+    public static func transaction(data: TW_Icon_Proto_SigningInput, signature: Data) -> Data {
+        let dataData = TWDataCreateWithNSData(try! data.serializedData())
+        defer {
+            TWDataDelete(dataData)
+        }
+        let signatureData = TWDataCreateWithNSData(signature)
+        defer {
+            TWDataDelete(signatureData)
+        }
+        return TWDataNSData(TWIconSignerTransaction(dataData, signatureData))
+    }
+
     let rawValue: OpaquePointer
 
     init(rawValue: OpaquePointer) {

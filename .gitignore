@@ -3,10 +3,11 @@
 .vscode/
 
 Carthage/
-build/
-.build/
+build/*
+.build/*
 .cquery_cache/
 *.zip
+
 
 *.xcuserdatad/
 *.bak
